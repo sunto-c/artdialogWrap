@@ -1,5 +1,5 @@
 {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "art dialog 封装",
     "name": "artdialogWrap",
     "main": "index.js",

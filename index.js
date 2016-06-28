@@ -52,6 +52,7 @@ exports.modal = function(content, options) {
   var opt = $.extend({
     fixed: true,
     padding: '60px 80px',
+    ok: function() {},
     okValue: ($.t && $.t('common.sure')) || '确定'
   }, options, {
     content: content
