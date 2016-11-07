@@ -1,13 +1,25 @@
 var $ = require('jquery');
 var artdialog = require('artdialog');
 
+var sureText = '确定';
+var cancelText = '取消';
+if ($.t) {
+  sureText = $.t('common.sure');
+  cancelText = $.t('common.cancel');
+}
+if (I18NT) {
+  sureText = I18NT('common.sure', '确定');
+  cancelText = I18NT('common.cancel', '取消');
+}
+
 /**
  * tip 提示
  * @param  {String} content 文本
  * @param  {Object} options 参数
+ * @param  {Function} cb    回调函数
  * @return {Object}         返回实例
  */
-exports.tip = function(content, options) {
+exports.tip = function(content, options, cb) {
   var opt = $.extend({
     skin: 'ui-toast'
   }, options, {
@@ -17,6 +29,7 @@ exports.tip = function(content, options) {
   if (opt.time != 0) {
     setTimeout(function() {
       d.close().remove();
+      cb && Object.prototype.toString.call(cb) === "[object Function]" && cb();
     }, opt.time || 3000)
   }
   return d;
@@ -32,9 +45,9 @@ exports.confirm = function(content, options, cb) {
   var opt = $.extend({
     fixed: true,
     padding: '60px 80px',
-    okValue: ($.t && $.t('common.sure')) || '确定',
+    okValue: sureText,
     ok: (cb && Object.prototype.toString.call(cb) === "[object Function]") ? cb : function() {},
-    cancelValue: ($.t && $.t('common.cancel')) || '取消',
+    cancelValue: cancelText,
     cancel: function() {}
   }, options, {
     content: content
@@ -53,7 +66,7 @@ exports.modal = function(content, options) {
     fixed: true,
     padding: '60px 80px',
     ok: function() {},
-    okValue: ($.t && $.t('common.sure')) || '确定'
+    okValue: sureText
   }, options, {
     content: content
   })

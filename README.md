@@ -1,6 +1,6 @@
 ## 方法
 
-### tip(content, options)
+### tip(content, options, cb)
 
 > tip 提示
 
