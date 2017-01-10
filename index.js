@@ -7,7 +7,7 @@ if ($.t) {
   sureText = $.t('common.sure');
   cancelText = $.t('common.cancel');
 }
-if (I18NT) {
+if (window.I18NT) {
   sureText = I18NT('common.sure', '确定');
   cancelText = I18NT('common.cancel', '取消');
 }
